@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "13008813638",
+    "firebase_url": "https://nsit-chat-room.firebaseio.com",
+    "project_id": "nsit-chat-room",
+    "storage_bucket": "nsit-chat-room.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:13008813638:android:e402ba71edaddde6",
+        "android_client_info": {
+          "package_name": "com.example.jatin_bansal_269co15.nsitchatroom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "13008813638-5hoimm6s0uno73im1t9ksbteb9k81qt0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2qvdRFEkwlZ1cYiKHQYK-H8Yjdi--aqY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
