@@ -19,13 +19,14 @@ import android.widget.TextView;
 public class About_me extends AppCompatActivity {
 
     private ImageView my_img;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about_me);
-        ImageView my_img = (ImageView)findViewById(R.id.mypic);
-        my_img.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        ImageView my_img = (ImageView) findViewById(R.id.mypic);
+        my_img.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_VIEW);
                 intent.addCategory(Intent.CATEGORY_BROWSABLE);

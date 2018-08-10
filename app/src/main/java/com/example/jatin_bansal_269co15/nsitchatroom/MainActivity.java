@@ -16,6 +16,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,28 +36,37 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
+    private String user_name;
     private Button add_room;
     private EditText room_name;
     private ListView listView;
     private ArrayAdapter<String> arrayAdapter;
     private ArrayList<String> list_of_rooms = new ArrayList<>();
     private String name;
+    private FirebaseAuth mAuth;
     private DatabaseReference root = FirebaseDatabase.getInstance().getReference().getRoot();
     private DatabaseReference delete;
     private FloatingActionButton fab;
     private String caps_string;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        user_name = getIntent().getExtras().get("user_name").toString();
+//        mAuth = FirebaseAuth.getInstance();
+//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestEmail()
+//                .build();
+//        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+//        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+//        updateUI(account);
         fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
         add_room = (Button) findViewById(R.id.btn_add_room);
         room_name = (EditText) findViewById(R.id.room_name_edittext);
         listView = (ListView) findViewById(R.id.listView);
 
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list_of_rooms)
-        {
+        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list_of_rooms) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
@@ -66,11 +80,13 @@ public class MainActivity extends AppCompatActivity {
 
         listView.setAdapter(arrayAdapter);
 
-        request_user_name();
+        //request_user_name();
 
         add_room.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                mAuth = FirebaseAuth.getInstance();
 
                 Map<String, Object> map = new HashMap<String, Object>();
                 caps_string = room_name.getText().toString();
@@ -109,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), Chat_Room.class);
                 intent.putExtra("room_name", ((TextView) view).getText().toString());
-                intent.putExtra("user_name", name);
+                intent.putExtra("user_name", user_name);
                 startActivity(intent);
             }
         });
@@ -129,9 +145,8 @@ public class MainActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, final View view, int position, long id) {
 
 
-
                 delete_room.setTitle("Delete Room");
-                delete_room.setMessage("Are you sure you want to delete "+ ((TextView) view).getText().toString() + "?");
+                delete_room.setMessage("Are you sure you want to delete " + ((TextView) view).getText().toString() + "?");
                 delete_room.setIcon(android.R.drawable.ic_dialog_alert);
                 delete_room.setCancelable(false);
                 delete_room.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -169,35 +184,35 @@ public class MainActivity extends AppCompatActivity {
     private void request_user_name() {
 
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Enter name:");
-            builder.setCancelable(false);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Enter name:");
+        builder.setCancelable(false);
 
 
-            final EditText input_field = new EditText(this);
+        final EditText input_field = new EditText(this);
 
-            builder.setView(input_field);
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setView(input_field);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    if (input_field.getText().toString().equals(null) || input_field.getText().toString().equals(""))
-                        request_user_name();
-                    name = input_field.getText().toString();
-
-                }
-            });
-
-            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    dialogInterface.cancel();
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (input_field.getText().toString().equals(null) || input_field.getText().toString().equals(""))
                     request_user_name();
-                }
-            });
+                name = input_field.getText().toString();
 
-            builder.show();
-        }
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+                request_user_name();
+            }
+        });
+
+        builder.show();
+    }
 
 
 }

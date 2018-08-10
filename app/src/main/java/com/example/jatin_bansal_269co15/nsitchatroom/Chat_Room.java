@@ -28,7 +28,7 @@ import java.util.Map;
  */
 
 
-public class Chat_Room extends AppCompatActivity{
+public class Chat_Room extends AppCompatActivity {
 
 
     private Button btn_send_msg;
@@ -36,10 +36,8 @@ public class Chat_Room extends AppCompatActivity{
     private TextView chat_conversation;
 
 
-
-
-    private String user_name,room_name;
-    private DatabaseReference root ;
+    private String user_name, room_name;
+    private DatabaseReference root;
     private String temp_key;
 
 
@@ -54,11 +52,9 @@ public class Chat_Room extends AppCompatActivity{
         chat_conversation = (TextView) findViewById(R.id.textView);
 
 
-
-
         user_name = getIntent().getExtras().get("user_name").toString();
         room_name = getIntent().getExtras().get("room_name").toString();
-        setTitle(" Room - "+room_name);
+        setTitle(" Room - " + room_name);
 
 
         root = FirebaseDatabase.getInstance().getReference().child(room_name);
@@ -69,15 +65,15 @@ public class Chat_Room extends AppCompatActivity{
             public void onClick(View view) {
 
 
-                Map<String,Object> map = new HashMap<String, Object>();
+                Map<String, Object> map = new HashMap<String, Object>();
                 temp_key = root.push().getKey();
                 root.updateChildren(map);
 
 
                 DatabaseReference message_root = root.child(temp_key);
-                Map<String,Object> map2 = new HashMap<String, Object>();
-                map2.put("name",user_name);
-                map2.put("msg",input_msg.getText().toString());
+                Map<String, Object> map2 = new HashMap<String, Object>();
+                map2.put("name", user_name);
+                map2.put("msg", input_msg.getText().toString());
 
 
                 message_root.updateChildren(map2);
@@ -127,11 +123,10 @@ public class Chat_Room extends AppCompatActivity{
         });
 
 
-
     }
 
 
-    private String chat_msg,chat_user_name;
+    private String chat_msg, chat_user_name;
 
 
     private void append_chat_conversation(DataSnapshot dataSnapshot) {
@@ -140,19 +135,17 @@ public class Chat_Room extends AppCompatActivity{
         Iterator i = dataSnapshot.getChildren().iterator();
 
 
-        while (i.hasNext()){
+        while (i.hasNext()) {
 
 
-            chat_msg = (String) ((DataSnapshot)i.next()).getValue();
-            chat_user_name = (String) ((DataSnapshot)i.next()).getValue();
+            chat_msg = (String) ((DataSnapshot) i.next()).getValue();
+            chat_user_name = (String) ((DataSnapshot) i.next()).getValue();
 
 
-            chat_conversation.append(chat_user_name +" : "+chat_msg +" \n");
+            chat_conversation.append(chat_user_name + " : " + chat_msg + " \n");
 
 
         }
-
-
 
 
     }
