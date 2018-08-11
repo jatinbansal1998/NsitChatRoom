@@ -35,6 +35,7 @@ public class sign_in extends AppCompatActivity implements View.OnClickListener {
             Intent room = new Intent(getApplicationContext(), MainActivity.class);
             room.putExtra("user_name", account.getDisplayName());
             startActivity(room);
+            finish();
         }
     }
 
