@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/background_3"
+    android:background="@color/backkground"
     >
 
 
@@ -26,7 +26,7 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:padding="10sp"
                 android:textSize="20sp"
 
@@ -56,17 +56,18 @@
             android:layout_gravity="bottom"
             android:hint="Enter Message Here"
             android:layout_marginLeft="10sp"
-            android:layout_weight="1"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white"
+            android:layout_weight="16"
+            android:textColorHint="@color/textAccent"
+            android:layout_margin="5dp"
             android:backgroundTint="@android:color/transparent"
             />
         <Button
             android:id="@+id/btn_send"
-            android:layout_width="wrap_content"
-            android:text="Send"
-            android:background="@android:color/transparent"
-            android:textColor="#ffffff"
+            android:layout_width="20dp"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/ic_send_black_24dp"
+            android:textColor="@color/textAccent"
             android:layout_height="wrap_content" />
 
 

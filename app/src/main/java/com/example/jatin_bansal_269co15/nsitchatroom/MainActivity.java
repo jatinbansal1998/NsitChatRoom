@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 //        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 //        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
 //        updateUI(account);
-        fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+        //fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
         add_room = (Button) findViewById(R.id.btn_add_room);
         room_name = (EditText) findViewById(R.id.room_name_edittext);
         listView = (ListView) findViewById(R.id.listView);
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
                 TextView text = (TextView) view.findViewById(android.R.id.text1);
-                text.setTextColor(Color.WHITE);
+                text.setTextColor(Color.BLACK);
                 text.setAllCaps(true);
                 return view;
             }
@@ -130,13 +130,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), About_me.class);
-                startActivity(intent);
-            }
-        });
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), About_me.class);
+//                startActivity(intent);
+//            }
+//        });
 
         final AlertDialog.Builder delete_room = new AlertDialog.Builder(this);
 

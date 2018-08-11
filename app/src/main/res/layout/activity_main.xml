@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_1"
+    android:background="@color/backkground"
     android:orientation="vertical"
     tools:context="com.example.jatin_bansal_269co15.nsitchatroom.MainActivity">
 
@@ -18,29 +18,28 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="horizontal" >
 
-        >
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="60sp"
-            android:layout_height="60sp"
-            android:clickable="true"
-            app:backgroundTint="@android:color/transparent"
-            app:elevation="0sp"
-            app:fabSize="mini"
-            app:srcCompat="@drawable/cutmypic" />
+        <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:id="@+id/floatingActionButton"-->
+            <!--android:layout_width="60sp"-->
+            <!--android:layout_height="60sp"-->
+            <!--android:clickable="true"-->
+            <!--app:backgroundTint="@android:color/transparent"-->
+            <!--app:elevation="0sp"-->
+            <!--app:fabSize="mini"-->
+            <!--app:srcCompat="@drawable/cutmypic" />-->
 
         <EditText
             android:id="@+id/room_name_edittext"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:backgroundTint="@android:color/transparent"
             android:hint="New Room Name"
             android:textAlignment="center"
-            android:textColorHint="@android:color/white" />
+            android:layout_margin="5dp"
+            android:textColorHint="@color/textAccent" />
         <!--<com.google.android.material.button.MaterialButton-->
         <!--android:id="@+id/btn_add_room"-->
         <!--style="@style/Widget.MaterialComponents.Button"-->
@@ -50,11 +49,13 @@
 
         <Button
             android:id="@+id/btn_add_room"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
             android:text="Add Room"
-            android:textColor="@android:color/white" />
+            android:layout_margin="5dp"
+            android:background="@drawable/button_enabled"
+            android:textColor="@color/textAccent" />
 
     </LinearLayout>
 
